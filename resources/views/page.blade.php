@@ -4,7 +4,7 @@
  <link href="css/comment.css" rel="stylesheet" type="text/css">
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Post</div>
 

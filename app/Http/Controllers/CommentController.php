@@ -19,13 +19,11 @@ class CommentController extends Controller
      * @return Comments
      */
     public function index($pageId)
-    {
-        //
+    {        
         $comments = Comment::where('page_id',$pageId)->get();
 
         $commentsData = [];
-        
-        
+           
         foreach ($comments as $key) {
             $user = User::find($key->users_id);
             $name = $user->name;
@@ -75,12 +73,16 @@ class CommentController extends Controller
         return $collection->sortBy('votes');
     }
 
+    /**
+     * @param integer $commentId     
+     * @throws Exception      
+     * @return collection $collection
+     */     
     protected function replies($commentId)
     {
         $comments = Comment::where('reply_id',$commentId)->get();
         $replies = [];
         
-
         foreach ($comments as $key) {
             $user = User::find($key->users_id);
             $name = $user->name;
@@ -90,7 +92,7 @@ class CommentController extends Controller
             $voteStatus = 0;
             $spam = 0;    
             
-            if(Auth::user()){
+            if( Auth::user() ){
                 $voteByUser = CommentVote::where('comment_id',$key->id)->where('user_id',Auth::user()->id)->first();
                 $spamComment = CommentSpam::where('comment_id',$key->id)->where('user_id',Auth::user()->id)->first();
 
@@ -103,8 +105,8 @@ class CommentController extends Controller
                     $spam = 1;
                 }
             }
-            if(!$spam){
-                
+
+            if( !$spam ){                
                 array_push($replies,[
                     "name" => $name,
                     "photo_url" => $photo,
@@ -116,9 +118,7 @@ class CommentController extends Controller
                     "spam" => $spam,
                     "date" => $key->created_at->toDateTimeString()
                 ]);
-            }
-            
-        
+            }                
         }
         
         $collection = collect($replies);

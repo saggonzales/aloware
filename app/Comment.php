@@ -17,6 +17,11 @@ class Comment extends Model
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
     // protected $dateFormat = "U";
 
+    /**     
+     * One Comment has many replies
+     * 
+     * @return array
+     */
     public function replies()
     {
         return $this->hasMany('App\Comment','id','reply_id');

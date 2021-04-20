@@ -1,18 +1,17 @@
 <template>
 <div class="container">
 
-    <!-- <div class="comments-app"> -->
-        <h1>Comments</h1>
+    <div class="comments-app">        
         <!-- From -->
         <div class="comment-form" v-if="user">
             <!-- Comment Avatar -->
-            <div class="comment-avatar">
-                <img src="image/comment-icon.png">
+            <div class="comment-avatar">                
+                <img :src="'/images/message-icon.png'" alt="image" />
             </div>
 
             <form class="form" name="form">
                 <div class="form-row">
-                    <textarea class="input" placeholder="Add comment..." required v-model="message"></textarea>
+                    <textarea class="input" placeholder="Type your comment here..." required v-model="message"></textarea>
                     <span class="input" v-if="errorComment" style="color:red">{{errorComment}}</span>
                 </div>
 
@@ -25,27 +24,14 @@
                 </div>
             </form>
         </div>
-        <div class="comment-form" v-else>
-            <!-- Comment Avatar -->
-            <div class="comment-avatar">
-                <img src="image/comment-icon.png">
-            </div>
-            <form class="form" name="form">
-                <div class="form-row">
-                    <a href="login"><textarea
-                    class="input"
-                    placeholder="Add comment..."
-                    required></textarea></a>
-                </div>
-            </form>
-        </div>
+
         <!-- Comments List -->
         <div class="comments" v-if="comments" v-for="(comment,index) in commentsData">
             <!-- Comment -->
             <div v-if="!spamComments[index] || !comment.spam" class="comment">
                 <!-- Comment Avatar -->
                 <div class="comment-avatar">
-                    <img src="image/comment-icon.png">
+                    <img :src="'/images/message-icon.png'" alt="image" />
                 </div>
 
                 <!-- Comment Box -->
@@ -61,13 +47,6 @@
 
                         <div class="comment-actions">
                             <ul class="list">
-                                <li>Votes: {{comment.votes}}
-                                    <a v-if="!comment.votedByUser" v-on:click="voteComment(comment.commentid,'directcomment',index,0,'up')">Up Votes</a>
-                                    <a v-if="!comment.votedByUser" v-on:click="voteComment(comment.commentid,'directcomment',index,0,'down')">Down Votes</a>
-                                </li>
-                                <li>
-                                    <a v-on:click="spamComment(comment.commentId,'directcomment',index,0)">Spam</a>
-                                </li>
                                 <li>
                                     <a v-on:click="openComment(index)">Reply</a>
                                 </li>
@@ -79,12 +58,12 @@
                 <div class="comment-form comment-v" v-if="commentBoxs[index]">
                     <!-- Comment Avatar -->
                     <div class="comment-avatar">
-                        <img src="image/comment-icon.png">
+                        <img :src="'/images/message-icon.png'" alt="image" />
                     </div>
 
                     <form class="form" name="form">
                         <div class="form-row">
-                            <textarea class="input" placeholder="Add comment..." required v-model="message"></textarea>
+                            <textarea class="input" placeholder="Type your comment here..." required v-model="message"></textarea>
                             <span class="input" v-if="errorReply" style="color:red">{{errorReply}}</span>
                         </div>
 
@@ -104,7 +83,7 @@
 
                             <!-- Comment Avatar -->
                             <div class="comment-avatar">
-                                <img src="image/comment-icon.png">
+                                <img :src="'/images/message-icon.png'" alt="image" />
                             </div>
 
                             <!-- Comment Box -->
@@ -120,14 +99,6 @@
 
                                     <div class="comment-actions">
                                         <ul class="list">
-                                            <li>Total votes: {{replies.votes}}
-                                                <a v-if="!replies.votedByUser" v-on:click="voteComment(replies.commentid,'replycomment',index,index2,'up')">Up Votes</a>
-                                                <a v-if="!replies.votedByUser" v-on:click="voteComment(comment.commentid,'replycomment',index,index2,'down')">Down Votes</a>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a v-on:click="spamComment(replies.commentid,'replycomment',index,index2)">Spam</a>
-                                            </li>
                                             <li>
                                                 <a v-on:click="replyCommentBox(index2)">Reply</a>
                                             </li>
@@ -139,12 +110,12 @@
                             <div class="comment-form reply" v-if="replyCommentBoxs[index2]">
                                 <!-- Comment Avatar -->
                                 <div class="comment-avatar">
-                                    <img src="image/comment-icon.png">
+                                    <img :src="'/images/message-icon.png'" alt="image" />
                                 </div>
 
                                 <form class="form" name="form">
                                     <div class="form-row">
-                                        <textarea class="input" placeholder="Add comment..." required v-model="message"></textarea>
+                                        <textarea class="input" placeholder="Type your comment here..." required v-model="message"></textarea>
                                         <span class="input" v-if="errorReply" style="color:red">{{errorReply}}</span>
                                     </div>
 
@@ -163,7 +134,7 @@
                 </div>
             </div>
         </div>
-    <!-- </div> -->
+    </div>
 </div>
 </template>
 
