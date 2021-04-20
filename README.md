@@ -35,6 +35,9 @@
 
 You have to register first before you can create post or before you can comment on a post
 
+![alt text](https://raw.githubusercontent.com/saggonzales/aloware/master/public/images/comment-logged-in.png)
+
+
 <!-- LICENSE -->
 ## License
 
